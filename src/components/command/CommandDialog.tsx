@@ -1,179 +1,190 @@
-import { useEffect, useState } from "react";
+import { useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  FileText,
-  Wand2,
-  Zap,
-  Image,
-  ArrowRight,
-  Sparkles,
-  Search,
-} from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-} from "@/components/ui/dialog";
-import { cn } from "@/lib/utils";
+import { Sparkles, Keyboard } from "lucide-react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { useCommandBar } from "./useCommandBar";
+import { CommandInput } from "./CommandInput";
+import { CommandSuggestions } from "./CommandSuggestions";
+import { WorkflowPreview } from "./WorkflowPreview";
+import { QuickActions } from "./QuickActions";
 
 interface CommandDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
 
-const quickActions = [
-  {
-    icon: FileText,
-    label: "Convert PDF",
-    description: "Transform documents",
-    gradient: "from-blue-500 to-blue-600",
-    bgGradient: "from-blue-500/10 to-blue-600/5",
-  },
-  {
-    icon: Wand2,
-    label: "AI Writer",
-    description: "Generate content",
-    gradient: "from-purple-500 to-pink-500",
-    bgGradient: "from-purple-500/10 to-pink-500/5",
-  },
-  {
-    icon: Image,
-    label: "Edit Image",
-    description: "Resize & compress",
-    gradient: "from-amber-500 to-orange-500",
-    bgGradient: "from-amber-500/10 to-orange-500/5",
-  },
-  {
-    icon: Zap,
-    label: "Automation",
-    description: "Run workflow",
-    gradient: "from-emerald-500 to-teal-500",
-    bgGradient: "from-emerald-500/10 to-teal-500/5",
-  },
-];
-
-const recentItems = [
-  { title: "Marketing Report.pdf", type: "PDF", time: "2 hours ago" },
-  { title: "Product Images", type: "Folder", time: "Yesterday" },
-  { title: "Blog Post Draft", type: "Document", time: "2 days ago" },
-];
-
 export function CommandDialog({ open, onOpenChange }: CommandDialogProps) {
-  const [query, setQuery] = useState("");
+  const {
+    query,
+    setQuery,
+    isProcessing,
+    selectedIndex,
+    setSelectedIndex,
+    showPreview,
+    setShowPreview,
+    detectedIntent,
+    suggestions,
+    executionSteps,
+    handleKeyDown,
+    executeWorkflow,
+    reset,
+  } = useCommandBar();
 
-  // Keyboard shortcut
+  // Reset on close
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
+    if (!open) {
+      reset();
+    }
+  }, [open, reset]);
+
+  // Global keyboard shortcut
+  useEffect(() => {
+    const handleGlobalKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
         onOpenChange(!open);
       }
     };
 
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
+    document.addEventListener("keydown", handleGlobalKeyDown);
+    return () => document.removeEventListener("keydown", handleGlobalKeyDown);
   }, [open, onOpenChange]);
+
+  const handleSuggestionSelect = useCallback(
+    (suggestion: { text: string }) => {
+      setQuery(suggestion.text);
+      setShowPreview(true);
+    },
+    [setQuery, setShowPreview]
+  );
+
+  const handleQuickActionSelect = useCallback(
+    (command: string) => {
+      setQuery(command);
+      setShowPreview(true);
+    },
+    [setQuery, setShowPreview]
+  );
+
+  const handleExecute = useCallback(() => {
+    if (detectedIntent) {
+      executeWorkflow(detectedIntent.suggestedWorkflow);
+    }
+  }, [detectedIntent, executeWorkflow]);
+
+  const handleClose = useCallback(() => {
+    reset();
+    onOpenChange(false);
+  }, [reset, onOpenChange]);
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl gap-0 overflow-hidden rounded-2xl border-border/60 p-0 shadow-2xl">
+      <DialogContent className="max-w-3xl gap-0 overflow-hidden rounded-2xl border-border/60 p-0 shadow-2xl [&>button]:hidden">
         <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.96 }}
-          transition={{ duration: 0.15 }}
+          initial={{ opacity: 0, scale: 0.95, y: 10 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.95, y: 10 }}
+          transition={{ duration: 0.2, ease: "easeOut" }}
+          className="relative overflow-hidden"
         >
-          {/* Search Input */}
-          <div className="flex items-center gap-4 border-b border-border/50 p-5">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-pink-500 to-purple-600 shadow-lg shadow-pink-500/20">
-              <Sparkles className="h-5 w-5 text-white" />
-            </div>
-            <input
-              type="text"
-              placeholder="What would you like to do?"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              className="flex-1 bg-transparent text-lg font-medium outline-none placeholder:text-muted-foreground"
-              autoFocus
-            />
-            <div className="flex items-center gap-1 rounded-lg bg-muted px-2.5 py-1.5">
-              <span className="text-xs font-medium text-muted-foreground">ESC</span>
-            </div>
-          </div>
+          {/* Background gradient decoration */}
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-pink-500/5 pointer-events-none" />
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-pink-500/10 rounded-full blur-3xl pointer-events-none" />
 
-          {/* Quick Actions */}
-          <div className="p-5">
-            <h3 className="mb-4 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              Quick Actions
-            </h3>
-            <div className="grid grid-cols-2 gap-3">
-              {quickActions.map((action, index) => (
-                <motion.button
-                  key={action.label}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                  whileHover={{ y: -2 }}
-                  className={cn(
-                    "group flex items-center gap-4 rounded-xl border border-border/50 p-4 text-left transition-all hover:border-border hover:shadow-md",
-                    `bg-gradient-to-br ${action.bgGradient}`
+          {/* Command Input */}
+          <CommandInput
+            query={query}
+            onQueryChange={setQuery}
+            onKeyDown={handleKeyDown}
+            isProcessing={isProcessing}
+            detectedIntent={detectedIntent}
+          />
+
+          {/* Main content area */}
+          <div className="relative max-h-[60vh] overflow-y-auto">
+            <AnimatePresence mode="wait">
+              {showPreview && detectedIntent && detectedIntent.requiredTools.length > 0 ? (
+                <WorkflowPreview
+                  key="preview"
+                  intent={detectedIntent}
+                  steps={executionSteps}
+                  isProcessing={isProcessing}
+                  onExecute={handleExecute}
+                  onClose={handleClose}
+                />
+              ) : query.length > 0 ? (
+                <motion.div
+                  key="suggestions"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <CommandSuggestions
+                    suggestions={suggestions}
+                    selectedIndex={selectedIndex}
+                    onSelect={handleSuggestionSelect}
+                    onHover={setSelectedIndex}
+                  />
+
+                  {/* Tab hint */}
+                  {detectedIntent && detectedIntent.requiredTools.length > 0 && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="mx-5 mb-4 p-3 rounded-xl bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-purple-500/20">
+                          <Sparkles className="h-4 w-4 text-purple-500" />
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-foreground">
+                            {detectedIntent.requiredTools.length} tool
+                            {detectedIntent.requiredTools.length > 1 ? "s" : ""} detected
+                          </p>
+                          <p className="text-xs text-muted-foreground">
+                            Press <kbd className="px-1.5 py-0.5 rounded bg-muted font-mono text-xs">Tab</kbd> to preview workflow
+                          </p>
+                        </div>
+                      </div>
+                    </motion.div>
                   )}
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="quick-actions"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
                 >
-                  <div className={cn(
-                    "flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br shadow-lg",
-                    action.gradient
-                  )}>
-                    <action.icon className="h-5 w-5 text-white" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="font-semibold text-foreground">{action.label}</p>
-                    <p className="text-xs text-muted-foreground">{action.description}</p>
-                  </div>
-                  <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-0.5" />
-                </motion.button>
-              ))}
-            </div>
-          </div>
-
-          {/* Recent Files */}
-          <div className="border-t border-border/50 p-5">
-            <h3 className="mb-4 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              Recent Files
-            </h3>
-            <div className="space-y-1">
-              {recentItems.map((item, index) => (
-                <motion.button
-                  key={item.title}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.2 + index * 0.05 }}
-                  className="flex w-full items-center gap-4 rounded-xl p-3 text-left transition-colors hover:bg-muted/50"
-                >
-                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-muted">
-                    <FileText className="h-4 w-4 text-muted-foreground" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-sm font-medium text-foreground">{item.title}</p>
-                    <p className="text-xs text-muted-foreground">{item.type}</p>
-                  </div>
-                  <span className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded-md">{item.time}</span>
-                </motion.button>
-              ))}
-            </div>
+                  <QuickActions onSelect={handleQuickActionSelect} />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
           {/* Footer */}
-          <div className="flex items-center justify-between border-t border-border/50 bg-muted/30 px-5 py-4">
+          <div className="relative flex items-center justify-between border-t border-border/50 bg-muted/30 px-5 py-3">
             <div className="flex items-center gap-4 text-xs text-muted-foreground">
               <span className="flex items-center gap-1.5">
-                <kbd className="rounded-md bg-muted px-2 py-0.5 font-mono">↑↓</kbd> Navigate
+                <kbd className="rounded-md bg-muted px-2 py-0.5 font-mono">↑↓</kbd>
+                Navigate
               </span>
               <span className="flex items-center gap-1.5">
-                <kbd className="rounded-md bg-muted px-2 py-0.5 font-mono">↵</kbd> Select
+                <kbd className="rounded-md bg-muted px-2 py-0.5 font-mono">Tab</kbd>
+                Preview
+              </span>
+              <span className="flex items-center gap-1.5">
+                <kbd className="rounded-md bg-muted px-2 py-0.5 font-mono">↵</kbd>
+                Execute
               </span>
             </div>
-            <div className="flex items-center gap-2 text-xs text-muted-foreground">
-              <Sparkles className="h-3 w-3 text-pink-500" />
-              <span>Powered by AI</span>
+            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5 text-xs text-purple-500">
+                <Sparkles className="h-3.5 w-3.5" />
+                <span className="font-medium">AI-Powered</span>
+              </div>
             </div>
           </div>
         </motion.div>

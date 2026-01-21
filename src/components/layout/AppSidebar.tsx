@@ -10,10 +10,10 @@ import {
   Settings,
   ChevronLeft,
   Sparkles,
-  TreePine,
   LogOut,
   User,
 } from "lucide-react";
+import logo from "@/assets/logo.png";
 import { cn } from "@/lib/utils";
 import {
   Sidebar,
@@ -59,9 +59,9 @@ export function AppSidebar() {
         <Link to="/" className="flex items-center gap-3 group">
           <motion.div
             whileHover={{ rotate: 10, scale: 1.05 }}
-            className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-pink-500 to-purple-600 shadow-lg shadow-pink-500/25"
+            className="flex h-11 w-11 items-center justify-center rounded-xl overflow-hidden"
           >
-            <TreePine className="h-6 w-6 text-white" />
+            <img src={logo} alt="PineToolsHub" className="h-11 w-11 object-cover" />
           </motion.div>
           <AnimatePresence>
             {!isCollapsed && (

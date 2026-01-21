@@ -10,6 +10,7 @@ import ContentStudioPage from "./pages/ContentStudioPage";
 import AutomationsPage from "./pages/AutomationsPage";
 import MediaToolsPage from "./pages/MediaToolsPage";
 import SettingsPage from "./pages/SettingsPage";
+import BrandKitPage from "./pages/BrandKitPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/automations" element={<AutomationsPage />} />
           <Route path="/media-tools" element={<MediaToolsPage />} />
           <Route path="/settings" element={<SettingsPage />} />
+          <Route path="/brandkit" element={<BrandKitPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

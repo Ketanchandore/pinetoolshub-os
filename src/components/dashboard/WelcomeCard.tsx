@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Sparkles, ArrowRight, TrendingUp, Zap } from "lucide-react";
+import { Sparkles, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function WelcomeCard() {
@@ -12,61 +12,55 @@ export function WelcomeCard() {
     >
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Grid pattern */}
-        <div className="absolute inset-0 opacity-[0.03]">
+        {/* Subtle grid pattern */}
+        <div className="absolute inset-0 opacity-[0.02]">
           <svg className="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
             <defs>
-              <pattern id="grid" width="8" height="8" patternUnits="userSpaceOnUse">
-                <path d="M 8 0 L 0 0 0 8" fill="none" stroke="white" strokeWidth="0.3" />
+              <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" strokeWidth="0.2" />
               </pattern>
             </defs>
             <rect width="100" height="100" fill="url(#grid)" />
           </svg>
         </div>
 
-        {/* Floating orbs */}
+        {/* Soft gradient orbs - more subtle */}
         <motion.div
           animate={{ 
-            y: [-20, 20, -20], 
-            x: [-10, 10, -10],
-            rotate: [0, 5, 0] 
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-gradient-to-br from-purple-500/20 to-pink-500/10 blur-3xl"
-        />
-        <motion.div
-          animate={{ 
-            y: [20, -20, 20], 
-            x: [10, -10, 10],
+            y: [-15, 15, -15], 
+            x: [-8, 8, -8],
+            scale: [1, 1.05, 1]
           }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -left-20 bottom-0 h-48 w-48 rounded-full bg-gradient-to-tr from-cyan-500/15 to-blue-500/10 blur-3xl"
+          className="absolute -right-32 -top-32 h-80 w-80 rounded-full bg-gradient-to-br from-purple-400/15 to-pink-400/10 blur-3xl"
+        />
+        <motion.div
+          animate={{ 
+            y: [15, -15, 15], 
+            x: [8, -8, 8],
+          }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -left-32 bottom-0 h-64 w-64 rounded-full bg-gradient-to-tr from-pink-400/10 to-purple-300/8 blur-3xl"
         />
         
-        {/* Decorative floating shapes */}
+        {/* Floating glass elements */}
         <motion.div
-          animate={{ y: [-10, 10, -10], rotate: [0, 10, 0] }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute right-[15%] top-[20%] h-20 w-20 rounded-2xl bg-gradient-to-br from-pink-500/30 to-orange-400/20 backdrop-blur-sm"
+          animate={{ y: [-8, 8, -8], rotate: [0, 6, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute right-[12%] top-[18%] h-16 w-16 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm"
           style={{ transform: "rotate(12deg)" }}
         />
         <motion.div
-          animate={{ y: [10, -10, 10], rotate: [0, -10, 0] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-          className="absolute right-[8%] top-[45%] h-16 w-16 rounded-xl bg-gradient-to-br from-amber-400/30 to-yellow-300/20 backdrop-blur-sm"
+          animate={{ y: [6, -6, 6], rotate: [0, -6, 0] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+          className="absolute right-[6%] top-[42%] h-12 w-12 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm"
           style={{ transform: "rotate(-8deg)" }}
         />
         <motion.div
-          animate={{ y: [-8, 12, -8], rotate: [0, 15, 0] }}
-          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          className="absolute right-[22%] bottom-[15%] h-14 w-14 rounded-xl bg-gradient-to-br from-emerald-400/30 to-teal-300/20 backdrop-blur-sm"
-          style={{ transform: "rotate(20deg)" }}
-        />
-        <motion.div
-          animate={{ y: [12, -8, 12], rotate: [0, -8, 0] }}
-          transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
-          className="absolute right-[35%] top-[30%] h-12 w-12 rounded-lg bg-gradient-to-br from-cyan-400/30 to-blue-400/20 backdrop-blur-sm"
-          style={{ transform: "rotate(-15deg)" }}
+          animate={{ y: [-6, 8, -6], rotate: [0, 10, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute right-[20%] bottom-[12%] h-14 w-14 rounded-xl border border-white/8 bg-white/5 backdrop-blur-sm"
+          style={{ transform: "rotate(18deg)" }}
         />
       </div>
 
@@ -76,15 +70,15 @@ export function WelcomeCard() {
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-          className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur-md border border-white/10"
+          className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/8 px-4 py-2 backdrop-blur-md border border-white/10"
         >
-          <div className="flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-r from-pink-500 to-purple-500">
+          <div className="flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-r from-purple-400 to-pink-400">
             <Sparkles className="h-3 w-3 text-white" />
           </div>
           <span className="text-sm font-medium text-white/90">AI Productivity OS</span>
         </motion.div>
 
-        {/* Heading with gradient text */}
+        {/* Heading with refined gradient text */}
         <motion.h1
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -99,7 +93,7 @@ export function WelcomeCard() {
           transition={{ delay: 0.4, duration: 0.5 }}
           className="mb-6 font-display text-4xl font-extrabold tracking-tight md:text-5xl lg:text-6xl"
         >
-          <span className="bg-gradient-to-r from-pink-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-purple-300 via-pink-300 to-purple-200 bg-clip-text text-transparent">
             AI-Powered Tools
           </span>
         </motion.h1>
@@ -108,7 +102,7 @@ export function WelcomeCard() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
-          className="mb-8 max-w-xl text-lg text-white/70 leading-relaxed"
+          className="mb-8 max-w-xl text-lg text-white/60 leading-relaxed"
         >
           Your intelligent workspace that remembers, understands, and automates. 
           Turn scattered tools into seamless workflows.
@@ -122,7 +116,7 @@ export function WelcomeCard() {
         >
           <Button
             size="lg"
-            className="h-12 rounded-xl bg-gradient-to-r from-pink-500 to-purple-600 px-6 text-base font-semibold text-white shadow-lg shadow-pink-500/25 transition-all hover:shadow-xl hover:shadow-pink-500/30 hover:scale-[1.02] border-0"
+            className="h-12 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 px-6 text-base font-semibold text-white shadow-lg shadow-purple-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/25 hover:scale-[1.02] active:scale-[0.98] border-0"
           >
             Get Started Free
             <ArrowRight className="ml-2 h-5 w-5" />
@@ -130,7 +124,7 @@ export function WelcomeCard() {
           <Button
             size="lg"
             variant="outline"
-            className="h-12 rounded-xl border-white/20 bg-white/5 px-6 text-base font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/10 hover:border-white/30"
+            className="h-12 rounded-xl border-white/15 bg-white/5 px-6 text-base font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-white/25 active:scale-[0.98]"
           >
             Watch Demo
           </Button>
@@ -147,13 +141,13 @@ export function WelcomeCard() {
             {[1, 2, 3, 4].map((i) => (
               <div
                 key={i}
-                className="h-8 w-8 rounded-full border-2 border-sidebar-background bg-gradient-to-br from-gray-300 to-gray-400"
+                className="h-8 w-8 rounded-full border-2 border-sidebar-background bg-gradient-to-br from-purple-200 to-pink-200"
               />
             ))}
           </div>
-          <div className="flex items-center gap-2 text-sm text-white/60">
-            <span className="inline-block h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>Trusted by <span className="font-semibold text-white/80">2,500+</span> users</span>
+          <div className="flex items-center gap-2 text-sm text-white/50">
+            <span className="inline-block h-2 w-2 rounded-full bg-emerald-400/80 animate-pulse" />
+            <span>Trusted by <span className="font-semibold text-white/70">2,500+</span> users</span>
           </div>
         </motion.div>
       </div>

@@ -1,4 +1,4 @@
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   LayoutDashboard,
@@ -12,9 +12,11 @@ import {
   Sparkles,
   LogOut,
   User,
+  LogIn,
 } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/hooks/useAuth";
 import {
   Sidebar,
   SidebarContent,
@@ -44,7 +46,9 @@ const bottomNavItems = [
 
 export function AppSidebar() {
   const location = useLocation();
+  const navigate = useNavigate();
   const { state, toggleSidebar } = useSidebar();
+  const { user, signOut } = useAuth();
   const isCollapsed = state === "collapsed";
 
   const isActive = (path: string) => location.pathname === path;
@@ -197,16 +201,31 @@ export function AppSidebar() {
               exit={{ opacity: 0 }}
               className="mt-4 flex items-center gap-3 rounded-xl bg-sidebar-accent/50 p-3"
             >
-              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500 to-blue-600">
-                <User className="h-4 w-4 text-white" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-sidebar-foreground truncate">John Doe</p>
-                <p className="text-xs text-sidebar-foreground/60 truncate">john@example.com</p>
-              </div>
-              <Button variant="ghost" size="icon" className="h-8 w-8 text-sidebar-foreground/60 hover:text-sidebar-foreground hover:bg-sidebar-accent">
-                <LogOut className="h-4 w-4" />
-              </Button>
+              {user ? (
+                <>
+                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500 to-blue-600">
+                    <User className="h-4 w-4 text-white" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium text-sidebar-foreground truncate">
+                      {user.user_metadata?.display_name || user.email?.split("@")[0]}
+                    </p>
+                    <p className="text-xs text-sidebar-foreground/60 truncate">{user.email}</p>
+                  </div>
+                  <Button variant="ghost" size="icon" className="h-8 w-8 text-sidebar-foreground/60 hover:text-sidebar-foreground hover:bg-sidebar-accent" onClick={() => signOut()}>
+                    <LogOut className="h-4 w-4" />
+                  </Button>
+                </>
+              ) : (
+                <Button
+                  variant="ghost"
+                  className="w-full justify-start gap-3 text-sidebar-foreground/80 hover:text-sidebar-foreground"
+                  onClick={() => navigate("/auth")}
+                >
+                  <LogIn className="h-4 w-4" />
+                  <span>Sign In</span>
+                </Button>
+              )}
             </motion.div>
           )}
         </AnimatePresence>

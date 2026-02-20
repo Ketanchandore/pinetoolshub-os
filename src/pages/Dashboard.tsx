@@ -10,7 +10,7 @@ import { useFiles } from "@/hooks/useFiles";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Brain, Zap, PenTool, Image, ArrowRight, Sparkles } from "lucide-react";
+import { Brain, Zap, PenTool, Image, ArrowRight, Sparkles, FileText, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function Dashboard() {
@@ -20,20 +20,31 @@ export default function Dashboard() {
 
   const featureCards = [
     {
+      title: "PDF Tools",
+      description: "Merge, split, compress, convert PDFs",
+      icon: FileText,
+      href: "/pdf-tools",
+      gradient: "from-blue-500 to-cyan-500",
+      badge: "8 Tools",
+      highlight: true,
+    },
+    {
       title: "File Brain",
-      description: `${files.length} files stored and analyzed`,
+      description: `${files.length} files stored and AI-analyzed`,
       icon: Brain,
       href: "/file-brain",
       gradient: "from-cyan-500 to-blue-500",
       badge: files.length > 0 ? `${files.length} files` : "Upload files",
+      highlight: false,
     },
     {
       title: "Content Studio",
-      description: "AI-powered writing assistant",
+      description: "AI-powered writing for any platform",
       icon: PenTool,
       href: "/content-studio",
       gradient: "from-purple-500 to-pink-500",
       badge: "AI Ready",
+      highlight: false,
     },
     {
       title: "Automations",
@@ -42,14 +53,16 @@ export default function Dashboard() {
       href: "/automations",
       gradient: "from-emerald-500 to-teal-500",
       badge: "4 Active",
+      highlight: false,
     },
     {
       title: "Media Tools",
-      description: "Resize, compress & convert",
+      description: "Real compress, resize & convert",
       icon: Image,
       href: "/media-tools",
       gradient: "from-amber-500 to-orange-500",
-      badge: "6 Tools",
+      badge: "Real Processing",
+      highlight: false,
     },
   ];
 
@@ -73,8 +86,9 @@ export default function Dashboard() {
             <Sparkles className="h-4 w-4 text-primary-foreground" />
           </div>
           <h2 className="font-display text-xl font-bold text-foreground">Your Tools</h2>
+          <Badge variant="outline" className="ml-auto text-xs border-blue-500/40 text-blue-600">New: PDF Tools</Badge>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
           {featureCards.map((card, index) => (
             <motion.button
               key={card.title}
@@ -83,9 +97,16 @@ export default function Dashboard() {
               transition={{ delay: 0.1 + index * 0.05 }}
               onClick={() => navigate(card.href)}
               whileHover={{ y: -3 }}
-              className="group relative overflow-hidden rounded-2xl border border-border/60 bg-card p-5 text-left transition-all hover:border-border hover:shadow-xl"
+              className={cn(
+                "group relative overflow-hidden rounded-2xl border bg-card p-5 text-left transition-all hover:shadow-xl",
+                card.highlight ? "border-blue-500/40 shadow-blue-500/10 shadow-md" : "border-border/60 hover:border-border"
+              )}
             >
-              <div className={cn("absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br", card.gradient, "opacity-[0.04] group-hover:opacity-[0.07]")} />
+              {card.highlight && (
+                <div className="absolute top-2 right-2">
+                  <Star className="h-3.5 w-3.5 text-blue-500 fill-blue-500" />
+                </div>
+              )}
               <div className="relative space-y-3">
                 <div className="flex items-start justify-between">
                   <div className={cn("flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br shadow-md", card.gradient)}>

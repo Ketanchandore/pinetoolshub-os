@@ -13,6 +13,7 @@ import {
   LogOut,
   User,
   LogIn,
+  FileText,
 } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { cn } from "@/lib/utils";
@@ -38,6 +39,7 @@ const mainNavItems = [
   { title: "Content Studio", url: "/content-studio", icon: PenTool },
   { title: "Automations", url: "/automations", icon: Zap },
   { title: "Media Tools", url: "/media-tools", icon: Image },
+  { title: "PDF Tools", url: "/pdf-tools", icon: FileText },
 ];
 
 const bottomNavItems = [

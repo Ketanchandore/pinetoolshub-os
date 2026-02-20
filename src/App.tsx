@@ -13,6 +13,7 @@ import MediaToolsPage from "./pages/MediaToolsPage";
 import SettingsPage from "./pages/SettingsPage";
 import BrandKitPage from "./pages/BrandKitPage";
 import AuthPage from "./pages/AuthPage";
+import PDFToolsPage from "./pages/PDFToolsPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
             <Route path="/media-tools" element={<MediaToolsPage />} />
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/brandkit" element={<BrandKitPage />} />
+            <Route path="/pdf-tools" element={<PDFToolsPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
@@ -44,3 +46,4 @@ const App = () => (
 );
 
 export default App;
+

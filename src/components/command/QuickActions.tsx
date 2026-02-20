@@ -1,25 +1,29 @@
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import {
-  FileText,
-  Wand2,
-  Image,
-  Zap,
-  ArrowRight,
-  FileSearch,
-  MessageSquare,
-  Repeat,
-  Table,
+  FileText, Wand2, Image, Zap, ArrowRight, FileSearch, MessageSquare,
+  Repeat, Layers, Minimize2, Scissors, RotateCw,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const quickActions = [
   {
-    icon: FileText,
-    label: "PDF Tools",
-    description: "Convert, merge, extract",
-    gradient: "from-blue-500 to-blue-600",
-    bgGradient: "from-blue-500/10 to-blue-600/5",
-    command: "Convert PDF to Word document",
+    icon: Layers,
+    label: "Merge PDF",
+    description: "Combine multiple PDFs",
+    gradient: "from-blue-500 to-cyan-500",
+    bgGradient: "from-blue-500/10 to-cyan-500/5",
+    command: "Merge PDF files",
+    route: "/pdf-tools",
+  },
+  {
+    icon: Minimize2,
+    label: "Compress PDF",
+    description: "Reduce PDF size",
+    gradient: "from-green-500 to-teal-500",
+    bgGradient: "from-green-500/10 to-teal-500/5",
+    command: "Compress PDF file",
+    route: "/pdf-tools",
   },
   {
     icon: Wand2,
@@ -28,22 +32,25 @@ const quickActions = [
     gradient: "from-purple-500 to-pink-500",
     bgGradient: "from-purple-500/10 to-pink-500/5",
     command: "Write a professional email about project update",
+    route: "/content-studio",
   },
   {
     icon: Image,
-    label: "Image Tools",
-    description: "Resize, compress, convert",
+    label: "Compress Image",
+    description: "Reduce image size",
     gradient: "from-amber-500 to-orange-500",
     bgGradient: "from-amber-500/10 to-orange-500/5",
-    command: "Resize image to 1920x1080 and compress",
+    command: "Compress and optimize image file",
+    route: "/media-tools",
   },
   {
-    icon: Zap,
-    label: "Automations",
-    description: "Run workflows",
-    gradient: "from-emerald-500 to-teal-500",
-    bgGradient: "from-emerald-500/10 to-teal-500/5",
-    command: "Process all images in folder and create ZIP",
+    icon: Scissors,
+    label: "Split PDF",
+    description: "Extract page ranges",
+    gradient: "from-violet-500 to-purple-500",
+    bgGradient: "from-violet-500/10 to-purple-500/5",
+    command: "Split PDF by page range",
+    route: "/pdf-tools",
   },
   {
     icon: MessageSquare,
@@ -52,30 +59,25 @@ const quickActions = [
     gradient: "from-rose-500 to-pink-500",
     bgGradient: "from-rose-500/10 to-pink-500/5",
     command: "Generate LinkedIn caption for product launch",
+    route: "/content-studio",
   },
   {
-    icon: Repeat,
-    label: "Repurpose",
-    description: "Transform content",
-    gradient: "from-violet-500 to-purple-500",
-    bgGradient: "from-violet-500/10 to-purple-500/5",
-    command: "Repurpose this blog into a Twitter thread",
-  },
-  {
-    icon: Table,
-    label: "Data Tools",
-    description: "CSV, Excel, analyze",
-    gradient: "from-cyan-500 to-blue-500",
-    bgGradient: "from-cyan-500/10 to-blue-500/5",
-    command: "Convert CSV to Excel and summarize the data",
+    icon: Zap,
+    label: "Automations",
+    description: "Run workflows",
+    gradient: "from-emerald-500 to-teal-500",
+    bgGradient: "from-emerald-500/10 to-teal-500/5",
+    command: "Process all images in folder and create ZIP",
+    route: "/automations",
   },
   {
     icon: FileSearch,
-    label: "Extract",
-    description: "OCR & text extraction",
-    gradient: "from-indigo-500 to-blue-500",
-    bgGradient: "from-indigo-500/10 to-blue-500/5",
-    command: "Extract text from PDF and translate to Spanish",
+    label: "File Brain",
+    description: "AI file memory",
+    gradient: "from-cyan-500 to-blue-500",
+    bgGradient: "from-cyan-500/10 to-blue-500/5",
+    command: "Upload and analyze file with AI",
+    route: "/file-brain",
   },
 ];
 
@@ -84,6 +86,16 @@ interface QuickActionsProps {
 }
 
 export function QuickActions({ onSelect }: QuickActionsProps) {
+  const navigate = useNavigate();
+
+  const handleAction = (action: typeof quickActions[0]) => {
+    if (action.route) {
+      navigate(action.route);
+    } else {
+      onSelect(action.command);
+    }
+  };
+
   return (
     <div className="p-5">
       <h3 className="mb-4 text-xs font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-2">
@@ -100,7 +112,7 @@ export function QuickActions({ onSelect }: QuickActionsProps) {
             transition={{ delay: index * 0.03 }}
             whileHover={{ y: -3, scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            onClick={() => onSelect(action.command)}
+            onClick={() => handleAction(action)}
             className={cn(
               "group relative flex flex-col items-start gap-3 rounded-xl border border-border/50 p-4 text-left transition-all duration-200",
               "hover:border-border hover:shadow-lg",

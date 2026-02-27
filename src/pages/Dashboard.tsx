@@ -5,6 +5,7 @@ import { WelcomeCard } from "@/components/dashboard/WelcomeCard";
 import { QuickActionsGrid } from "@/components/dashboard/QuickActionsGrid";
 import { RecentActivity } from "@/components/dashboard/RecentActivity";
 import { StatsCards } from "@/components/dashboard/StatsCards";
+import { SEOHead, softwareSchema } from "@/components/SEOHead";
 import { useAuth } from "@/hooks/useAuth";
 import { useFiles } from "@/hooks/useFiles";
 import { Button } from "@/components/ui/button";
@@ -73,6 +74,12 @@ export default function Dashboard() {
       transition={{ duration: 0.3 }}
       className="min-h-full space-y-8 p-6 md:p-8"
     >
+      <SEOHead
+        title="PineToolsHub — Free AI Productivity OS with PDF & Image Tools"
+        description="Free all-in-one AI workspace: PDF merge, split, compress, image optimization, AI content writer, file management. No signup, no ads. 20+ tools in one place."
+        canonical="/"
+        jsonLd={softwareSchema()}
+      />
       {/* Welcome Section */}
       <WelcomeCard />
 

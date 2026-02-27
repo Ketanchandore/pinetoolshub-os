@@ -64,20 +64,7 @@ export default function FileBrainPage() {
     e.target.value = "";
   };
 
-  if (!user) {
-    return (
-      <MainLayout>
-        <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
-          <Brain className="h-16 w-16 text-muted-foreground/40" />
-          <h2 className="text-2xl font-bold text-foreground">Sign in to access File Brain</h2>
-          <p className="text-muted-foreground">Your AI-powered file memory awaits.</p>
-          <Button asChild className="bg-gradient-to-r from-pink-500 to-purple-600 text-white">
-            <a href="/auth">Sign In</a>
-          </Button>
-        </div>
-      </MainLayout>
-    );
-  }
+  // File Brain is now free to use - no auth gate
 
   return (
     <MainLayout>

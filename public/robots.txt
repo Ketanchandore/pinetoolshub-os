@@ -12,3 +12,7 @@ Allow: /
 
 User-agent: *
 Allow: /
+Disallow: /auth
+Disallow: /settings
+
+Sitemap: https://pinetoolshub.com/sitemap.xml

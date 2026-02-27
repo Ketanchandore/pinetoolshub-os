@@ -15,6 +15,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
+import { SEOHead } from "@/components/SEOHead";
 
 const contentTypes = [
   { id: "blog", label: "Blog Post", icon: BookOpen, desc: "Long-form article", color: "from-blue-500 to-cyan-500" },
@@ -130,6 +131,11 @@ export default function ContentStudioPage() {
 
   return (
     <MainLayout>
+      <SEOHead
+        title="Free AI Content Writer — Blog, Social Media, Email"
+        description="Generate blog posts, Twitter threads, LinkedIn posts, emails, and product descriptions with AI. 6 content types, 6 tones. Free, no signup required."
+        canonical="/content-studio"
+      />
       <div className="min-h-full p-6 md:p-8 space-y-8">
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="flex items-center gap-4">

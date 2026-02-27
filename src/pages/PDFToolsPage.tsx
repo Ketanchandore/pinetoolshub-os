@@ -1,5 +1,7 @@
 import { useState, useRef, useCallback } from "react";
 import { MainLayout } from "@/components/layout/MainLayout";
+import { SEOHead, faqSchema, softwareSchema } from "@/components/SEOHead";
+import { FAQSection } from "@/components/FAQSection";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   FileText, Upload, Download, Merge, Scissors, RotateCw, Stamp,
@@ -18,6 +20,14 @@ import {
   protectPdf, pdfToImages, imagesToPdf, downloadPdf, formatPdfSize, getPdfPageCount
 } from "@/lib/pdfUtils";
 import { cn } from "@/lib/utils";
+
+const pdfFaqs = [
+  { question: "How to merge PDF files online for free?", answer: "Select 'Merge PDF' above, drag and drop multiple PDF files, arrange them in order, and click Process. Your merged PDF downloads instantly — no signup, no ads, 100% browser-based." },
+  { question: "Is it safe to use online PDF tools?", answer: "PineToolsHub processes all PDFs entirely in your browser using JavaScript. Your files never leave your device or get uploaded to any server, making it the most private PDF tool available." },
+  { question: "Can I compress PDF without losing quality?", answer: "Yes. Our PDF compressor optimizes internal structures (fonts, metadata) to reduce size without degrading text or image quality. Typical savings are 20-60%." },
+  { question: "How to convert PDF to images?", answer: "Select 'PDF to Images', upload your PDF, and each page is extracted as a high-quality JPG. Download individual pages or all at once." },
+  { question: "Do I need to create an account?", answer: "No. All 8 PDF tools are completely free without signup. Start processing immediately." },
+];
 
 const tools = [
   { id: "merge", label: "Merge PDF", icon: Layers, color: "from-blue-500 to-cyan-500", desc: "Combine multiple PDFs into one" },
@@ -210,8 +220,13 @@ export default function PDFToolsPage() {
 
   return (
     <MainLayout>
+      <SEOHead
+        title="Free PDF Tools Online — Merge, Split, Compress, Convert"
+        description="8 free online PDF tools: merge, split, compress, rotate, watermark, protect, PDF to images, images to PDF. No signup, no ads, 100% browser-based privacy."
+        canonical="/pdf-tools"
+        jsonLd={faqSchema(pdfFaqs)}
+      />
       <div className="min-h-full p-6 md:p-8 space-y-8">
-        {/* Header */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="flex items-center gap-4">
           <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 shadow-lg shadow-blue-500/25">
             <FileText className="h-6 w-6 text-white" />
@@ -497,6 +512,9 @@ export default function PDFToolsPage() {
             </div>
           </motion.div>
         </div>
+
+        {/* FAQ Section for SEO */}
+        <FAQSection faqs={pdfFaqs} />
       </div>
     </MainLayout>
   );

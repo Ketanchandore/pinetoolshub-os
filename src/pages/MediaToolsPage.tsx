@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback } from "react";
 import { MainLayout } from "@/components/layout/MainLayout";
+import { SEOHead } from "@/components/SEOHead";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Image, Upload, Download, RefreshCw, Maximize2, Minimize2,
@@ -141,6 +142,11 @@ export default function MediaToolsPage() {
 
   return (
     <MainLayout>
+      <SEOHead
+        title="Free Image Compressor & Resizer Online"
+        description="Compress, resize, and convert images online free. Real browser-based processing with before/after comparison. Supports JPEG, PNG, WebP, BMP. No signup required."
+        canonical="/media-tools"
+      />
       <div className="min-h-full p-6 md:p-8 space-y-8">
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="flex items-center gap-4">

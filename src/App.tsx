@@ -14,6 +14,12 @@ import SettingsPage from "./pages/SettingsPage";
 import BrandKitPage from "./pages/BrandKitPage";
 import AuthPage from "./pages/AuthPage";
 import PDFToolsPage from "./pages/PDFToolsPage";
+import BlogPage from "./pages/BlogPage";
+import AIToolsGuide2026 from "./pages/blog/AIToolsGuide2026";
+import FreePDFToolsGuide from "./pages/blog/FreePDFToolsGuide";
+import WhyPineToolsHub from "./pages/blog/WhyPineToolsHub";
+import ImageCompressionGuide from "./pages/blog/ImageCompressionGuide";
+import AIContentWritingWorkflow from "./pages/blog/AIContentWritingWorkflow";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -36,6 +42,12 @@ const App = () => (
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/brandkit" element={<BrandKitPage />} />
             <Route path="/pdf-tools" element={<PDFToolsPage />} />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/best-free-ai-tools-2026" element={<AIToolsGuide2026 />} />
+            <Route path="/blog/free-pdf-tools-online-guide" element={<FreePDFToolsGuide />} />
+            <Route path="/blog/why-pinetoolshub-replaces-10-apps" element={<WhyPineToolsHub />} />
+            <Route path="/blog/image-compression-resize-guide" element={<ImageCompressionGuide />} />
+            <Route path="/blog/ai-content-writing-workflow" element={<AIContentWritingWorkflow />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

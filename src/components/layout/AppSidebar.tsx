@@ -14,6 +14,7 @@ import {
   User,
   LogIn,
   FileText,
+  BookOpen,
 } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { cn } from "@/lib/utils";
@@ -40,6 +41,7 @@ const mainNavItems = [
   { title: "Automations", url: "/automations", icon: Zap },
   { title: "Media Tools", url: "/media-tools", icon: Image },
   { title: "PDF Tools", url: "/pdf-tools", icon: FileText },
+  { title: "Blog", url: "/blog", icon: BookOpen },
 ];
 
 const bottomNavItems = [

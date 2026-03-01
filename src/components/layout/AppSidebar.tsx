@@ -15,6 +15,10 @@ import {
   LogIn,
   FileText,
   BookOpen,
+  QrCode,
+  Type,
+  Palette,
+  Calculator,
 } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { cn } from "@/lib/utils";
@@ -41,6 +45,10 @@ const mainNavItems = [
   { title: "Automations", url: "/automations", icon: Zap },
   { title: "Media Tools", url: "/media-tools", icon: Image },
   { title: "PDF Tools", url: "/pdf-tools", icon: FileText },
+  { title: "QR Code", url: "/qr-code", icon: QrCode },
+  { title: "Text Tools", url: "/text-tools", icon: Type },
+  { title: "Color Tools", url: "/color-tools", icon: Palette },
+  { title: "Unit Converter", url: "/unit-converter", icon: Calculator },
   { title: "Blog", url: "/blog", icon: BookOpen },
 ];
 

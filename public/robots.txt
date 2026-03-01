@@ -12,7 +12,18 @@ Allow: /
 
 User-agent: *
 Allow: /
+Allow: /pdf-tools
+Allow: /media-tools
+Allow: /qr-code
+Allow: /text-tools
+Allow: /color-tools
+Allow: /unit-converter
+Allow: /content-studio
+Allow: /file-brain
+Allow: /blog
 Disallow: /auth
 Disallow: /settings
+Disallow: /command
+Disallow: /automations
 
 Sitemap: https://pinetoolshub.com/sitemap.xml

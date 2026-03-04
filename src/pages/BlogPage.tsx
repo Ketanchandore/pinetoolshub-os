@@ -8,36 +8,9 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const blogPosts = [
   {
-    slug: "how-to-merge-pdf-files-online-free",
-    title: "How to Merge PDF Files Online Free — Step by Step Guide (2026)",
-    excerpt: "Learn how to merge PDF files online for free without signup. Step-by-step guide to combine multiple PDFs into one using PineToolsHub's browser-based PDF merger.",
-    category: "PDF Guide",
-    readTime: "8 min read",
-    date: "Mar 1, 2026",
-    gradient: "from-blue-500 to-cyan-500",
-  },
-  {
-    slug: "compress-image-online-without-losing-quality",
-    title: "How to Compress Images Online Without Losing Quality (2026 Guide)",
-    excerpt: "Learn how to compress images by 50-80% while keeping them sharp. Compare JPEG vs PNG vs WebP and find the best free image compressor online.",
-    category: "Image Guide",
-    readTime: "9 min read",
-    date: "Mar 1, 2026",
-    gradient: "from-amber-500 to-orange-500",
-  },
-  {
-    slug: "free-ai-writing-tools-2026",
-    title: "Best Free AI Writing Tools in 2026 — Generate Content Without Paying",
-    excerpt: "Discover the best free AI writing tools. Generate blog posts, social media content, emails, and product descriptions without paying $50/month.",
-    category: "AI Tools",
-    readTime: "10 min read",
-    date: "Mar 1, 2026",
-    gradient: "from-purple-500 to-pink-500",
-  },
-  {
     slug: "best-free-ai-tools-2026",
     title: "15 Best Free AI Tools for Productivity in 2026",
-    excerpt: "Discover the most powerful free AI tools that are transforming how professionals work in 2026. From AI writing assistants to intelligent file management.",
+    excerpt: "Discover the most powerful free AI tools that are transforming how professionals work in 2026. From AI writing assistants to intelligent file management, these tools eliminate busywork and supercharge your output.",
     category: "AI Tools",
     readTime: "12 min read",
     date: "Feb 25, 2026",
@@ -46,7 +19,7 @@ const blogPosts = [
   {
     slug: "free-pdf-tools-online-guide",
     title: "Complete Guide to Free PDF Tools Online (No Signup Required)",
-    excerpt: "Learn how to merge, split, compress, convert, watermark, and protect PDFs entirely free. Compare PineToolsHub vs iLovePDF vs SmallPDF.",
+    excerpt: "Learn how to merge, split, compress, convert, watermark, and protect PDFs entirely free — no account needed. Compare PineToolsHub vs iLovePDF vs SmallPDF and discover which tool gives you the best results without ads.",
     category: "PDF Tools",
     readTime: "10 min read",
     date: "Feb 22, 2026",
@@ -55,7 +28,7 @@ const blogPosts = [
   {
     slug: "why-pinetoolshub-replaces-10-apps",
     title: "Why PineToolsHub Replaces 10 Apps You Use Daily",
-    excerpt: "Stop paying for separate PDF tools, image editors, writing assistants, and file managers. PineToolsHub combines everything into one free workspace.",
+    excerpt: "Stop paying for separate PDF tools, image editors, writing assistants, and file managers. PineToolsHub combines everything into one free, AI-powered workspace that actually remembers your work.",
     category: "Productivity",
     readTime: "8 min read",
     date: "Feb 18, 2026",
@@ -64,7 +37,7 @@ const blogPosts = [
   {
     slug: "image-compression-resize-guide",
     title: "How to Compress & Resize Images Online Free (2026 Guide)",
-    excerpt: "The complete guide to reducing image file sizes without losing quality. Learn browser-based compression techniques and format conversion.",
+    excerpt: "The complete guide to reducing image file sizes without losing quality. Learn browser-based compression techniques, format conversion (JPEG vs WebP vs PNG), and batch optimization for websites and social media.",
     category: "Media Tools",
     readTime: "9 min read",
     date: "Feb 14, 2026",
@@ -73,7 +46,7 @@ const blogPosts = [
   {
     slug: "ai-content-writing-workflow",
     title: "AI Content Writing Workflow: From Idea to Published in 10 Minutes",
-    excerpt: "Master the art of AI-assisted content creation. Learn how to use PineToolsHub's Content Studio to generate content that converts.",
+    excerpt: "Master the art of AI-assisted content creation. Learn how to use PineToolsHub's Content Studio to generate blog posts, social media threads, marketing emails, and product descriptions that convert.",
     category: "Content Creation",
     readTime: "11 min read",
     date: "Feb 10, 2026",
@@ -139,10 +112,6 @@ export default function BlogPage() {
             {[
               { label: "PDF Tools", href: "/pdf-tools", desc: "Merge, split, compress PDFs" },
               { label: "Media Tools", href: "/media-tools", desc: "Compress & resize images" },
-              { label: "QR Code", href: "/qr-code", desc: "Generate QR codes free" },
-              { label: "Text Tools", href: "/text-tools", desc: "Word counter & more" },
-              { label: "Color Tools", href: "/color-tools", desc: "Picker, palette, contrast" },
-              { label: "Unit Converter", href: "/unit-converter", desc: "Length, weight, temp" },
               { label: "Content Studio", href: "/content-studio", desc: "AI writing assistant" },
               { label: "File Brain", href: "/file-brain", desc: "AI file management" },
             ].map((link) => (

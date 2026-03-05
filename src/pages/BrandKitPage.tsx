@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { MainLayout } from "@/components/layout/MainLayout";
+import { SEOHead } from "@/components/SEOHead";
 import brandBanner from "@/assets/brand-banner.png";
 import logo from "@/assets/logo.png";
 import {
@@ -46,6 +47,12 @@ const stats = [
 export default function BrandKitPage() {
   return (
     <MainLayout>
+      <SEOHead
+        title="About PineToolsHub — Our Mission, Vision & Brand Story | AI Productivity OS"
+        description="PineToolsHub is building the world's most powerful free AI productivity operating system. Learn about our mission to empower millions of users worldwide with 30+ free PDF tools, AI file manager, image compressor and content writer."
+        canonical="/brandkit"
+        keywords="pinetoolshub about, ai productivity platform, free pdf tools company, pinetoolshub brand, online tools startup"
+      />
       <div className="min-h-screen overflow-y-auto">
         {/* Hero Section with Brand Banner */}
         <section className="relative overflow-hidden">
@@ -58,7 +65,7 @@ export default function BrandKitPage() {
           >
             <img
               src={brandBanner}
-              alt="PineToolsHub Brand Banner"
+              alt="PineToolsHub Brand Banner — AI Productivity OS for Students and Professionals"
               className="w-full h-[500px] object-cover object-center"
             />
           </motion.div>
@@ -124,7 +131,7 @@ export default function BrandKitPage() {
               <div className="relative bg-gradient-to-br from-sidebar/80 to-sidebar-accent/80 backdrop-blur-xl rounded-3xl p-8 border border-white/10">
                 <img
                   src={logo}
-                  alt="PineToolsHub Logo"
+                  alt="PineToolsHub Logo — Free AI Productivity Tools"
                   className="w-full max-w-xs mx-auto"
                 />
                 <div className="text-center mt-6">

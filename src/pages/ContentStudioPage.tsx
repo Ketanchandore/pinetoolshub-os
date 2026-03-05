@@ -132,9 +132,10 @@ export default function ContentStudioPage() {
   return (
     <MainLayout>
       <SEOHead
-        title="Free AI Content Writer — Blog, Social Media, Email"
-        description="Generate blog posts, Twitter threads, LinkedIn posts, emails, and product descriptions with AI. 6 content types, 6 tones. Free, no signup required."
+        title="Free AI Content Writer Online — Generate Blog Posts, Twitter Threads, LinkedIn & Emails (2026)"
+        description="Create high-quality blog posts, viral Twitter threads, professional LinkedIn posts, marketing emails, social captions and product descriptions with AI. Choose from 6 content types and 6 writing tones. 100% free, no signup required, no word limits. The best free AI content writing tool for marketers, freelancers and entrepreneurs."
         canonical="/content-studio"
+        keywords="free ai content writer, ai blog post generator, twitter thread generator, linkedin post writer, ai email copywriter, free content creation tool 2026"
       />
       <div className="min-h-full p-6 md:p-8 space-y-8">
         {/* Header */}

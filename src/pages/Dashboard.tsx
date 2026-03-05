@@ -75,9 +75,10 @@ export default function Dashboard() {
       className="min-h-full space-y-8 p-6 md:p-8"
     >
       <SEOHead
-        title="PineToolsHub — Free AI Productivity OS with PDF & Image Tools"
-        description="Free all-in-one AI workspace: PDF merge, split, compress, image optimization, AI content writer, file management. No signup, no ads. 20+ tools in one place."
+        title="PineToolsHub Dashboard — Your Free AI Productivity Workspace with 30+ Tools"
+        description="Access all 30+ free tools from your personal dashboard: PDF merge, split, compress, rotate, watermark, image compressor, AI content writer, file brain manager and workflow automations. Track your files, recent activity and quick-access tools. 100% free, no limits."
         canonical="/"
+        keywords="free productivity dashboard, ai workspace, pdf tools dashboard, file manager, content studio, pinetoolshub"
         jsonLd={softwareSchema()}
       />
       {/* Welcome Section */}

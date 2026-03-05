@@ -143,9 +143,10 @@ export default function MediaToolsPage() {
   return (
     <MainLayout>
       <SEOHead
-        title="Free Image Compressor & Resizer Online"
-        description="Compress, resize, and convert images online free. Real browser-based processing with before/after comparison. Supports JPEG, PNG, WebP, BMP. No signup required."
+        title="Free Image Compressor, Resizer & Converter Online — JPEG, PNG, WebP, BMP (2026)"
+        description="Compress images up to 80% smaller, resize to any dimension, convert between JPEG, PNG, WebP and BMP formats — all free, browser-based with instant before/after comparison. No signup, no file limits, no watermarks. The fastest free image optimization tool for web developers, designers and content creators worldwide."
         canonical="/media-tools"
+        keywords="free image compressor online, resize image free, convert png to webp, compress jpeg online, image optimizer free, reduce image size online 2026"
       />
       <div className="min-h-full p-6 md:p-8 space-y-8">
         {/* Header */}

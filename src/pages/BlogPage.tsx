@@ -28,11 +28,11 @@ export default function BlogPage() {
   return (
     <MainLayout>
       <SEOHead
-        title="Blog — Free PDF Tools, AI Guides & Productivity Tips | PineToolsHub"
-        description="Expert guides on free PDF tools, AI productivity, image optimization, and workflow automation. Learn how to merge, split, compress PDFs and more."
+        title="Blog — Free PDF Tools Guides, AI Productivity Tips & Online Tool Tutorials (2026)"
+        description="Expert guides on free PDF tools, AI-powered productivity, image compression and optimization, workflow automation and content creation. Learn how to merge, split, compress, rotate, watermark PDFs and more. Step-by-step tutorials for every tool on PineToolsHub — the best free online productivity suite."
         canonical="/blog"
-        keywords="free PDF tools blog, merge pdf guide, compress pdf tutorial, AI tools 2026, productivity tips"
-        jsonLd={webPageSchema("PineToolsHub Blog", "Expert guides on free AI and PDF tools", "/blog")}
+        keywords="free pdf tools blog, how to merge pdf, compress pdf guide, ai tools 2026, image compression tutorial, productivity tips, online tools guide"
+        jsonLd={webPageSchema("PineToolsHub Blog — Free PDF & AI Tools Guides", "Expert guides and tutorials on free online PDF tools, AI productivity and image optimization", "/blog")}
       />
       <div className="min-h-full p-6 md:p-8 space-y-8">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>

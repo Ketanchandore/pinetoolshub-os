@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { MainLayout } from "@/components/layout/MainLayout";
+import { SEOHead } from "@/components/SEOHead";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Zap, Plus, Play, Pause, Trash2, Clock, CheckCircle2,
@@ -31,52 +32,36 @@ interface Automation {
 
 const initialAutomations: Automation[] = [
   {
-    id: "1",
-    name: "Daily File Backup",
+    id: "1", name: "Daily File Backup",
     description: "Auto-backup all new files to cloud storage every midnight",
     trigger: "Every day at 12:00 AM",
     actions: ["Scan File Brain", "Compress files", "Upload to backup"],
-    status: "active",
-    runs: 47,
-    lastRun: "2 hours ago",
-    gradient: "from-blue-500 to-cyan-500",
-    icon: FileText,
+    status: "active", runs: 47, lastRun: "2 hours ago",
+    gradient: "from-blue-500 to-cyan-500", icon: FileText,
   },
   {
-    id: "2",
-    name: "Image Optimization Pipeline",
+    id: "2", name: "Image Optimization Pipeline",
     description: "Resize and compress images when uploaded to File Brain",
     trigger: "On new image upload",
     actions: ["Detect image", "Resize to 1080p", "Compress 80%", "Generate thumbnail"],
-    status: "active",
-    runs: 234,
-    lastRun: "15 min ago",
-    gradient: "from-amber-500 to-orange-500",
-    icon: Image,
+    status: "active", runs: 234, lastRun: "15 min ago",
+    gradient: "from-amber-500 to-orange-500", icon: Image,
   },
   {
-    id: "3",
-    name: "Content Repurpose Bot",
+    id: "3", name: "Content Repurpose Bot",
     description: "Turn blog posts into social media snippets automatically",
     trigger: "On new blog post saved",
     actions: ["Extract key points", "Generate Twitter thread", "Create LinkedIn post"],
-    status: "paused",
-    runs: 12,
-    lastRun: "3 days ago",
-    gradient: "from-purple-500 to-pink-500",
-    icon: Brain,
+    status: "paused", runs: 12, lastRun: "3 days ago",
+    gradient: "from-purple-500 to-pink-500", icon: Brain,
   },
   {
-    id: "4",
-    name: "Weekly Report Email",
+    id: "4", name: "Weekly Report Email",
     description: "Send summary of activities every Monday morning",
     trigger: "Every Monday at 9:00 AM",
     actions: ["Collect stats", "Generate report", "Send email"],
-    status: "error",
-    runs: 8,
-    lastRun: "Failed 1 day ago",
-    gradient: "from-rose-500 to-red-500",
-    icon: Mail,
+    status: "error", runs: 8, lastRun: "Failed 1 day ago",
+    gradient: "from-rose-500 to-red-500", icon: Mail,
   },
 ];
 
@@ -127,8 +112,13 @@ export default function AutomationsPage() {
 
   return (
     <MainLayout>
+      <SEOHead
+        title="AI Workflow Automations — Automate File Processing, Content & Emails Free"
+        description="Build powerful AI-powered automations that run on autopilot. Automate file backups, image optimization, content repurposing, email digests and more. Free workflow templates for productivity."
+        canonical="/automations"
+        keywords="workflow automation free, automate file processing, ai automation tools, productivity automation, auto compress images, auto backup files"
+      />
       <div className="min-h-full p-6 md:p-8 space-y-8">
-        {/* Header */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="flex items-center justify-between flex-wrap gap-4">
           <div className="flex items-center gap-4">
             <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 shadow-lg shadow-emerald-500/25">
@@ -144,7 +134,6 @@ export default function AutomationsPage() {
           </Button>
         </motion.div>
 
-        {/* Stats */}
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
           className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
@@ -165,17 +154,11 @@ export default function AutomationsPage() {
           ))}
         </motion.div>
 
-        {/* Tabs */}
         <div className="flex gap-1 p-1 bg-muted rounded-xl w-fit">
           {(["my", "templates"] as const).map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={cn(
-                "px-4 py-2 rounded-lg text-sm font-medium transition-all",
-                activeTab === tab ? "bg-card shadow-sm text-foreground" : "text-muted-foreground hover:text-foreground"
-              )}
-            >
+            <button key={tab} onClick={() => setActiveTab(tab)}
+              className={cn("px-4 py-2 rounded-lg text-sm font-medium transition-all",
+                activeTab === tab ? "bg-card shadow-sm text-foreground" : "text-muted-foreground hover:text-foreground")}>
               {tab === "my" ? "My Automations" : "Templates"}
             </button>
           ))}
@@ -218,10 +201,7 @@ export default function AutomationsPage() {
                           </div>
                         </div>
                         <div className="flex items-center gap-2 shrink-0">
-                          <Switch
-                            checked={auto.status === "active"}
-                            onCheckedChange={() => toggleStatus(auto.id)}
-                          />
+                          <Switch checked={auto.status === "active"} onCheckedChange={() => toggleStatus(auto.id)} />
                           <Button variant="ghost" size="icon" className="h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity" onClick={() => runNow(auto.id)}>
                             <Play className="h-3.5 w-3.5 text-emerald-500" />
                           </Button>

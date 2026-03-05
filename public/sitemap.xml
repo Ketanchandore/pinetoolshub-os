@@ -1,16 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Core Pages -->
   <url><loc>https://pinetoolshub.com/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
-  <url><loc>https://pinetoolshub.com/pdf-tools</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://pinetoolshub.com/pdf-tools</loc><changefreq>weekly</changefreq><priority>0.95</priority></url>
   <url><loc>https://pinetoolshub.com/media-tools</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://pinetoolshub.com/content-studio</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://pinetoolshub.com/file-brain</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pinetoolshub.com/content-studio</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://pinetoolshub.com/file-brain</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
   <url><loc>https://pinetoolshub.com/automations</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://pinetoolshub.com/blog</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
-  <url><loc>https://pinetoolshub.com/blog/best-free-ai-tools-2026</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pinetoolshub.com/command</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://pinetoolshub.com/brandkit</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+
+  <!-- Blog Hub -->
+  <url><loc>https://pinetoolshub.com/blog</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+
+  <!-- PDF Tool Blogs -->
+  <url><loc>https://pinetoolshub.com/blog/how-to-merge-pdf-online-free</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://pinetoolshub.com/blog/how-to-split-pdf-pages</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://pinetoolshub.com/blog/compress-pdf-reduce-size</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://pinetoolshub.com/blog/rotate-pdf-pages-online</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pinetoolshub.com/blog/add-watermark-to-pdf</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pinetoolshub.com/blog/password-protect-pdf</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pinetoolshub.com/blog/convert-pdf-to-images</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pinetoolshub.com/blog/convert-images-to-pdf</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pinetoolshub.com/blog/add-page-numbers-to-pdf</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://pinetoolshub.com/blog/remove-pages-from-pdf</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+
+  <!-- General Blogs -->
+  <url><loc>https://pinetoolshub.com/blog/best-free-ai-tools-2026</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
   <url><loc>https://pinetoolshub.com/blog/free-pdf-tools-online-guide</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://pinetoolshub.com/blog/why-pinetoolshub-replaces-10-apps</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://pinetoolshub.com/blog/image-compression-resize-guide</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://pinetoolshub.com/blog/ai-content-writing-workflow</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://pinetoolshub.com/settings</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://pinetoolshub.com/blog/ai-content-writing-workflow</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
 </urlset>

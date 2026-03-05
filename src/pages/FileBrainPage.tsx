@@ -196,9 +196,10 @@ export default function FileBrainPage() {
   return (
     <MainLayout>
       <SEOHead
-        title="File Brain — AI-Powered File Manager | Upload, Process & Organize Free"
-        description="Upload any file — PDF, image, video — with no size limits. AI auto-analyzes, tags, and summarizes. Process files with 30+ built-in tools. Free, no signup required."
+        title="File Brain — Free AI-Powered File Manager | Upload, Process & Organize Any File Online"
+        description="Upload unlimited files — PDFs, images, videos, documents — with no size limits. AI auto-analyzes, tags and summarizes every file. Process files instantly with 30+ built-in tools: compress, resize, convert, rotate, watermark and more. Free, no signup required, 100% browser-based privacy."
         canonical="/file-brain"
+        keywords="free ai file manager, upload files online free, ai file organizer, unlimited file upload, process pdf online, compress image online, file brain ai"
         jsonLd={faqSchema(fileBrainFaqs)}
       />
       <div className="space-y-6">

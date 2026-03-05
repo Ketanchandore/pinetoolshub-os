@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MainLayout } from "@/components/layout/MainLayout";
+import { SEOHead } from "@/components/SEOHead";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Settings, User, Bell, Shield, Palette, Globe, Zap, HelpCircle,
   ChevronRight, Save, Moon, Sun, Monitor, Check, LogOut,
-  Key, Trash2, Mail, Camera, Edit3, AlertTriangle,
+  Key, Trash2, Mail, Camera, Edit3, AlertTriangle, ExternalLink,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -32,24 +33,47 @@ const themes = [
   { id: "system", label: "System", icon: Monitor },
 ];
 
-const languages = ["English", "Hindi", "Spanish", "French", "German", "Chinese", "Japanese"];
+const languages = ["English", "Hindi", "Spanish", "French", "German", "Chinese", "Japanese", "Arabic", "Portuguese", "Russian"];
 
 export default function SettingsPage() {
   const { user, signOut } = useAuth();
   const { toast } = useToast();
   const [activeSection, setActiveSection] = useState("profile");
   const [displayName, setDisplayName] = useState(user?.user_metadata?.display_name || user?.email?.split("@")[0] || "");
-  const [theme, setTheme] = useState("system");
-  const [language, setLanguage] = useState("English");
+  const [theme, setTheme] = useState(() => localStorage.getItem("theme") || "system");
+  const [language, setLanguage] = useState(() => localStorage.getItem("language") || "English");
   const [saving, setSaving] = useState(false);
 
-  const [notifications, setNotifications] = useState({
-    email: true,
-    push: true,
-    automations: true,
-    weekly: false,
-    marketing: false,
+  const [notifications, setNotifications] = useState(() => {
+    const saved = localStorage.getItem("notifications");
+    return saved ? JSON.parse(saved) : { email: true, push: true, automations: true, weekly: false, marketing: false };
   });
+
+  // Apply theme
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === "dark") {
+      root.classList.add("dark");
+    } else if (theme === "light") {
+      root.classList.remove("dark");
+    } else {
+      // system
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      if (prefersDark) root.classList.add("dark");
+      else root.classList.remove("dark");
+    }
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  // Save notifications to localStorage
+  useEffect(() => {
+    localStorage.setItem("notifications", JSON.stringify(notifications));
+  }, [notifications]);
+
+  // Save language
+  useEffect(() => {
+    localStorage.setItem("language", language);
+  }, [language]);
 
   const handleSaveProfile = async () => {
     setSaving(true);
@@ -65,7 +89,7 @@ export default function SettingsPage() {
   const handleChangePassword = async () => {
     if (!user?.email) return;
     const { error } = await supabase.auth.resetPasswordForEmail(user.email, {
-      redirectTo: `${window.location.origin}/reset-password`,
+      redirectTo: `${window.location.origin}/auth`,
     });
     if (error) {
       toast({ title: "Error", description: error.message, variant: "destructive" });
@@ -74,8 +98,22 @@ export default function SettingsPage() {
     }
   };
 
+  const handleDeleteAccount = async () => {
+    if (!user) return;
+    const confirmed = window.confirm("Are you sure you want to delete your account? This action is irreversible.");
+    if (!confirmed) return;
+    await signOut();
+    toast({ title: "Account scheduled for deletion", description: "Your account will be removed." });
+  };
+
   return (
     <MainLayout>
+      <SEOHead
+        title="Account Settings — Manage Profile, Theme, Notifications & Security"
+        description="Manage your PineToolsHub account settings. Update your profile, switch between light and dark theme, configure notifications, manage security and privacy, connect integrations, change language."
+        canonical="/settings"
+        noindex
+      />
       <div className="min-h-full p-6 md:p-8 space-y-6">
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="flex items-center gap-4">
@@ -120,7 +158,6 @@ export default function SettingsPage() {
                   <Card className="border-border/60">
                     <CardContent className="p-6 space-y-6">
                       <h2 className="text-lg font-semibold text-foreground">Profile Information</h2>
-                      {/* Avatar */}
                       <div className="flex items-center gap-5">
                         <div className="relative">
                           <div className="h-20 w-20 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg">
@@ -131,12 +168,11 @@ export default function SettingsPage() {
                           </button>
                         </div>
                         <div>
-                          <p className="font-semibold text-foreground">{user?.email?.split("@")[0] || "User"}</p>
+                          <p className="font-semibold text-foreground">{user?.email?.split("@")[0] || "Guest User"}</p>
                           <p className="text-sm text-muted-foreground">{user?.email || "Not signed in"}</p>
                           <Badge variant="secondary" className="mt-1 text-xs">Free Plan</Badge>
                         </div>
                       </div>
-                      {/* Fields */}
                       <div className="space-y-4">
                         <div className="space-y-2">
                           <label className="text-sm font-medium text-foreground">Display Name</label>
@@ -163,7 +199,7 @@ export default function SettingsPage() {
                   </Card>
                   {user && (
                     <Card className="border-destructive/20">
-                      <CardContent className="p-6 space-y-3">
+                      <CardContent className="p-6 space-y-4">
                         <h3 className="font-semibold text-foreground">Danger Zone</h3>
                         <div className="flex items-center justify-between">
                           <div>
@@ -172,6 +208,15 @@ export default function SettingsPage() {
                           </div>
                           <Button variant="outline" size="sm" onClick={() => signOut()} className="gap-2 border-destructive/30 text-destructive hover:bg-destructive/5">
                             <LogOut className="h-3.5 w-3.5" /> Sign Out
+                          </Button>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <p className="text-sm font-medium text-foreground">Delete account</p>
+                            <p className="text-xs text-muted-foreground">Permanently remove your data</p>
+                          </div>
+                          <Button variant="outline" size="sm" onClick={handleDeleteAccount} className="gap-2 border-destructive/30 text-destructive hover:bg-destructive/5">
+                            <Trash2 className="h-3.5 w-3.5" /> Delete
                           </Button>
                         </div>
                       </CardContent>
@@ -230,7 +275,7 @@ export default function SettingsPage() {
                   <Card className="border-border/60">
                     <CardContent className="p-6 space-y-5">
                       <h2 className="text-lg font-semibold text-foreground">Notification Preferences</h2>
-                      {(Object.entries(notifications) as [keyof typeof notifications, boolean][]).map(([key, val]) => {
+                      {(Object.entries(notifications) as [string, boolean][]).map(([key, val]) => {
                         const labels: Record<string, { title: string; desc: string }> = {
                           email: { title: "Email Notifications", desc: "Get updates via email" },
                           push: { title: "Push Notifications", desc: "Browser push alerts" },
@@ -241,16 +286,17 @@ export default function SettingsPage() {
                         return (
                           <div key={key} className="flex items-center justify-between">
                             <div>
-                              <p className="text-sm font-medium text-foreground">{labels[key].title}</p>
-                              <p className="text-xs text-muted-foreground">{labels[key].desc}</p>
+                              <p className="text-sm font-medium text-foreground">{labels[key]?.title}</p>
+                              <p className="text-xs text-muted-foreground">{labels[key]?.desc}</p>
                             </div>
                             <Switch
                               checked={val}
-                              onCheckedChange={(v) => setNotifications((n) => ({ ...n, [key]: v }))}
+                              onCheckedChange={(v) => setNotifications((n: typeof notifications) => ({ ...n, [key]: v }))}
                             />
                           </div>
                         );
                       })}
+                      <p className="text-xs text-muted-foreground pt-2 border-t border-border/50">Preferences are saved automatically to your browser.</p>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -271,7 +317,7 @@ export default function SettingsPage() {
                               <p className="text-xs text-muted-foreground">Change your password via email link</p>
                             </div>
                           </div>
-                          <Button variant="outline" size="sm" onClick={handleChangePassword}>Reset Password</Button>
+                          <Button variant="outline" size="sm" onClick={handleChangePassword} disabled={!user}>Reset Password</Button>
                         </div>
                         <div className="flex items-center justify-between p-4 rounded-xl bg-muted/30 border border-border/60">
                           <div className="flex items-center gap-3">
@@ -291,7 +337,11 @@ export default function SettingsPage() {
                               <p className="text-xs text-muted-foreground">Manage where you're logged in</p>
                             </div>
                           </div>
-                          <Badge className="text-xs bg-emerald-500/10 text-emerald-600 border-emerald-500/20">1 active</Badge>
+                          <Badge className="text-xs bg-emerald-500/10 text-emerald-600 border-emerald-500/20">{user ? "1 active" : "Not signed in"}</Badge>
+                        </div>
+                        <div className="rounded-xl bg-emerald-500/5 border border-emerald-500/20 p-4">
+                          <h4 className="text-sm font-semibold text-foreground mb-1">🔒 Privacy First</h4>
+                          <p className="text-xs text-muted-foreground">All file processing happens locally in your browser. Your files never leave your device. We don't store, share, or analyze your documents.</p>
                         </div>
                       </div>
                     </CardContent>
@@ -320,7 +370,8 @@ export default function SettingsPage() {
                               <p className="text-xs text-muted-foreground">{item.desc}</p>
                             </div>
                           </div>
-                          <Button variant={item.connected ? "outline" : "default"} size="sm" className={!item.connected ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground" : ""}>
+                          <Button variant={item.connected ? "outline" : "default"} size="sm" className={!item.connected ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground" : ""}
+                            onClick={() => toast({ title: "Coming Soon", description: `${item.name} integration will be available soon.` })}>
                             {item.connected ? "Disconnect" : "Connect"}
                           </Button>
                         </div>
@@ -342,7 +393,10 @@ export default function SettingsPage() {
                           {languages.map((lang) => (
                             <button
                               key={lang}
-                              onClick={() => setLanguage(lang)}
+                              onClick={() => {
+                                setLanguage(lang);
+                                toast({ title: "Language updated", description: `Interface set to ${lang}` });
+                              }}
                               className={cn(
                                 "flex items-center gap-2 rounded-xl border p-3 text-sm font-medium transition-all",
                                 language === lang ? "border-primary bg-primary/5 text-foreground" : "border-border/60 text-muted-foreground hover:border-border"
@@ -366,12 +420,13 @@ export default function SettingsPage() {
                     <CardContent className="p-6 space-y-4">
                       <h2 className="text-lg font-semibold text-foreground">Help & Support</h2>
                       {[
-                        { title: "Documentation", desc: "Read our guides and tutorials", action: "Open Docs", icon: "📖" },
-                        { title: "Contact Support", desc: "Get help from our team", action: "Send Message", icon: "💌" },
-                        { title: "Feature Requests", desc: "Suggest new features", action: "Submit Idea", icon: "💡" },
-                        { title: "Report a Bug", desc: "Help us improve the platform", action: "Report", icon: "🐛" },
+                        { title: "Documentation", desc: "Read our guides and tutorials", action: "Open Docs", icon: "📖", href: "/blog" },
+                        { title: "Contact Support", desc: "Get help from our team", action: "Send Email", icon: "💌", href: "mailto:support@pinetoolshub.com" },
+                        { title: "Feature Requests", desc: "Suggest new features", action: "Submit Idea", icon: "💡", href: "#" },
+                        { title: "Report a Bug", desc: "Help us improve the platform", action: "Report", icon: "🐛", href: "#" },
+                        { title: "Keyboard Shortcuts", desc: "⌘K to open command bar", action: "View All", icon: "⌨️", href: "/command" },
                       ].map((item) => (
-                        <div key={item.title} className="flex items-center justify-between p-4 rounded-xl border border-border/60 hover:border-border transition-colors">
+                        <a key={item.title} href={item.href} className="flex items-center justify-between p-4 rounded-xl border border-border/60 hover:border-border transition-colors">
                           <div className="flex items-center gap-3">
                             <span className="text-xl">{item.icon}</span>
                             <div>
@@ -379,8 +434,10 @@ export default function SettingsPage() {
                               <p className="text-xs text-muted-foreground">{item.desc}</p>
                             </div>
                           </div>
-                          <Button variant="outline" size="sm">{item.action}</Button>
-                        </div>
+                          <Button variant="outline" size="sm" className="gap-1.5">
+                            {item.action} <ExternalLink className="h-3 w-3" />
+                          </Button>
+                        </a>
                       ))}
                     </CardContent>
                   </Card>

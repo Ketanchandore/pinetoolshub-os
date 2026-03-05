@@ -246,9 +246,10 @@ export default function PDFToolsPage() {
   return (
     <MainLayout>
       <SEOHead
-        title="30+ Free PDF Tools Online — Merge, Split, Compress, Convert & More"
-        description="30+ free online PDF tools: merge, split, compress, rotate, watermark, page numbers, resize, stamp, metadata editor, and more. No signup, no ads, 100% browser-based privacy."
+        title="30+ Free Online PDF Tools — Merge, Split, Compress, Rotate, Watermark, Convert PDF (2026)"
+        description="The most complete free online PDF toolkit with 30+ tools: merge PDF, split pages, compress file size, rotate, add watermark, page numbers, remove pages, resize, stamp, edit metadata, convert to images and more. 100% browser-based processing — your files never leave your device. No signup, no ads, no file size limits. Used by students, freelancers and professionals worldwide."
         canonical="/pdf-tools"
+        keywords="free pdf tools online, merge pdf free, split pdf online, compress pdf, rotate pdf, add watermark pdf, pdf editor free 2026, pdf to image converter, images to pdf"
         jsonLd={faqSchema(pdfFaqs)}
       />
       <div className="min-h-full p-4 md:p-6 space-y-6">

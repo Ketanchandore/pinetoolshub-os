@@ -78,6 +78,8 @@ export default function Dashboard() {
   ];
 
   return (
+    <>
+    {dashboardSEO}
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}

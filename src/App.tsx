@@ -30,6 +30,23 @@ import PdfToImagesBlog from "./pages/blog/PdfToImagesBlog";
 import ImagesToPdfBlog from "./pages/blog/ImagesToPdfBlog";
 import PageNumbersBlog from "./pages/blog/PageNumbersBlog";
 import RemovePagesBlog from "./pages/blog/RemovePagesBlog";
+import ExtractPagesBlog from "./pages/blog/ExtractPagesBlog";
+import ReorderPagesBlog from "./pages/blog/ReorderPagesBlog";
+import PdfToTextBlog from "./pages/blog/PdfToTextBlog";
+import FlattenPdfBlog from "./pages/blog/FlattenPdfBlog";
+import GrayscalePdfBlog from "./pages/blog/GrayscalePdfBlog";
+import StampPdfBlog from "./pages/blog/StampPdfBlog";
+import SignPdfBlog from "./pages/blog/SignPdfBlog";
+import UnlockPdfBlog from "./pages/blog/UnlockPdfBlog";
+import PdfMetadataBlog from "./pages/blog/PdfMetadataBlog";
+import CropPdfBlog from "./pages/blog/CropPdfBlog";
+import ResizePagesBlog from "./pages/blog/ResizePagesBlog";
+import HeaderFooterBlog from "./pages/blog/HeaderFooterBlog";
+import DuplicatePagesBlog from "./pages/blog/DuplicatePagesBlog";
+import ReversePagesBlog from "./pages/blog/ReversePagesBlog";
+import RepairPdfBlog from "./pages/blog/RepairPdfBlog";
+import PdfToBase64Blog from "./pages/blog/PdfToBase64Blog";
+import ResizeImageBlog from "./pages/blog/ResizeImageBlog";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -68,6 +85,23 @@ const App = () => (
             <Route path="/blog/convert-images-to-pdf" element={<ImagesToPdfBlog />} />
             <Route path="/blog/add-page-numbers-to-pdf" element={<PageNumbersBlog />} />
             <Route path="/blog/remove-pages-from-pdf" element={<RemovePagesBlog />} />
+            <Route path="/blog/extract-pages-from-pdf" element={<ExtractPagesBlog />} />
+            <Route path="/blog/reorder-pdf-pages" element={<ReorderPagesBlog />} />
+            <Route path="/blog/convert-pdf-to-text" element={<PdfToTextBlog />} />
+            <Route path="/blog/flatten-pdf-online" element={<FlattenPdfBlog />} />
+            <Route path="/blog/convert-pdf-to-grayscale" element={<GrayscalePdfBlog />} />
+            <Route path="/blog/stamp-pdf-confidential-draft" element={<StampPdfBlog />} />
+            <Route path="/blog/sign-pdf-online-free" element={<SignPdfBlog />} />
+            <Route path="/blog/unlock-pdf-remove-restrictions" element={<UnlockPdfBlog />} />
+            <Route path="/blog/edit-pdf-metadata" element={<PdfMetadataBlog />} />
+            <Route path="/blog/crop-pdf-online-free" element={<CropPdfBlog />} />
+            <Route path="/blog/resize-pdf-pages" element={<ResizePagesBlog />} />
+            <Route path="/blog/add-header-footer-to-pdf" element={<HeaderFooterBlog />} />
+            <Route path="/blog/duplicate-pdf-pages" element={<DuplicatePagesBlog />} />
+            <Route path="/blog/reverse-pdf-page-order" element={<ReversePagesBlog />} />
+            <Route path="/blog/repair-corrupted-pdf" element={<RepairPdfBlog />} />
+            <Route path="/blog/convert-pdf-to-base64" element={<PdfToBase64Blog />} />
+            <Route path="/blog/resize-image-online-free" element={<ResizeImageBlog />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

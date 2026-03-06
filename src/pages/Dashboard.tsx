@@ -19,6 +19,16 @@ export default function Dashboard() {
   const { files } = useFiles();
   const navigate = useNavigate();
 
+  const dashboardSEO = (
+    <SEOHead
+      title="Dashboard — Your Free AI Productivity Hub | PineToolsHub Online Tools Suite"
+      description="Access your personal PineToolsHub dashboard. Manage PDF tools, AI file brain, image compressor, content writer and automation workflows. View recent files, processing history and quick actions for 30+ free online productivity tools — all in one place."
+      canonical="/dashboard"
+      keywords="pinetoolshub dashboard, free pdf tools dashboard, ai productivity hub, online tools manager, file management dashboard"
+      jsonLd={softwareSchema()}
+    />
+  );
+
   const featureCards = [
     {
       title: "PDF Tools",

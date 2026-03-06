@@ -19,7 +19,7 @@ export function SEOHead({
   description,
   canonical,
   keywords,
-  ogImage = `${BASE_URL}/og-default.png`,
+  ogImage = `${BASE_URL}/og-image.png`,
   ogType = "website",
   twitterCard = "summary_large_image",
   jsonLd,

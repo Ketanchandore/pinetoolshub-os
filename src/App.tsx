@@ -49,6 +49,27 @@ import PdfToBase64Blog from "./pages/blog/PdfToBase64Blog";
 import ResizeImageBlog from "./pages/blog/ResizeImageBlog";
 import NotFound from "./pages/NotFound";
 
+// Tool Landing Pages
+import MergePdfLanding from "./pages/tools/MergePdfLanding";
+import SplitPdfLanding from "./pages/tools/SplitPdfLanding";
+import CompressPdfLanding from "./pages/tools/CompressPdfLanding";
+import RotatePdfLanding from "./pages/tools/RotatePdfLanding";
+import PdfToImageLanding from "./pages/tools/PdfToImageLanding";
+import ImageToPdfLanding from "./pages/tools/ImageToPdfLanding";
+import WatermarkPdfLanding from "./pages/tools/WatermarkPdfLanding";
+import ProtectPdfLanding from "./pages/tools/ProtectPdfLanding";
+import UnlockPdfLanding from "./pages/tools/UnlockPdfLanding";
+import PageNumbersPdfLanding from "./pages/tools/PageNumbersPdfLanding";
+import RemovePagesPdfLanding from "./pages/tools/RemovePagesPdfLanding";
+import CompressImageLanding from "./pages/tools/CompressImageLanding";
+import ResizeImageLanding from "./pages/tools/ResizeImageLanding";
+import ConvertImageLanding from "./pages/tools/ConvertImageLanding";
+import FlattenPdfLanding from "./pages/tools/FlattenPdfLanding";
+import GrayscalePdfLanding from "./pages/tools/GrayscalePdfLanding";
+import MetadataPdfLanding from "./pages/tools/MetadataPdfLanding";
+import StampPdfLanding from "./pages/tools/StampPdfLanding";
+import RepairPdfLanding from "./pages/tools/RepairPdfLanding";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -69,6 +90,29 @@ const App = () => (
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/brandkit" element={<BrandKitPage />} />
             <Route path="/pdf-tools" element={<PDFToolsPage />} />
+
+            {/* Dedicated Tool Landing Pages */}
+            <Route path="/merge-pdf" element={<MergePdfLanding />} />
+            <Route path="/split-pdf" element={<SplitPdfLanding />} />
+            <Route path="/compress-pdf" element={<CompressPdfLanding />} />
+            <Route path="/rotate-pdf" element={<RotatePdfLanding />} />
+            <Route path="/pdf-to-jpg" element={<PdfToImageLanding />} />
+            <Route path="/jpg-to-pdf" element={<ImageToPdfLanding />} />
+            <Route path="/add-watermark-pdf" element={<WatermarkPdfLanding />} />
+            <Route path="/protect-pdf" element={<ProtectPdfLanding />} />
+            <Route path="/unlock-pdf" element={<UnlockPdfLanding />} />
+            <Route path="/add-page-numbers-pdf" element={<PageNumbersPdfLanding />} />
+            <Route path="/remove-pages-pdf" element={<RemovePagesPdfLanding />} />
+            <Route path="/compress-image" element={<CompressImageLanding />} />
+            <Route path="/resize-image" element={<ResizeImageLanding />} />
+            <Route path="/convert-image" element={<ConvertImageLanding />} />
+            <Route path="/flatten-pdf" element={<FlattenPdfLanding />} />
+            <Route path="/grayscale-pdf" element={<GrayscalePdfLanding />} />
+            <Route path="/edit-pdf-metadata" element={<MetadataPdfLanding />} />
+            <Route path="/stamp-pdf" element={<StampPdfLanding />} />
+            <Route path="/repair-pdf" element={<RepairPdfLanding />} />
+
+            {/* Blog Routes */}
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/best-free-ai-tools-2026" element={<AIToolsGuide2026 />} />
             <Route path="/blog/free-pdf-tools-online-guide" element={<FreePDFToolsGuide />} />

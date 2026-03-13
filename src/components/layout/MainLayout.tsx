@@ -20,6 +20,7 @@ export function MainLayout({ children }: MainLayoutProps) {
           <TopBar onCommandOpen={() => setCommandOpen(true)} />
           <main className="flex-1 overflow-auto">
             {children}
+            <SEOFooter />
           </main>
         </SidebarInset>
       </div>

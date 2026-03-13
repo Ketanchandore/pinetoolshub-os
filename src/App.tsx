@@ -48,6 +48,7 @@ import RepairPdfBlog from "./pages/blog/RepairPdfBlog";
 import PdfToBase64Blog from "./pages/blog/PdfToBase64Blog";
 import ResizeImageBlog from "./pages/blog/ResizeImageBlog";
 import NotFound from "./pages/NotFound";
+import RedirectPage from "./pages/RedirectPage";
 
 // Tool Landing Pages
 import MergePdfLanding from "./pages/tools/MergePdfLanding";

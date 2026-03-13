@@ -44,7 +44,7 @@ const popularBlogs = [
 
 export function SEOFooter() {
   return (
-    <footer className="bg-card border-t border-border mt-16 pt-12 pb-8 px-4 sm:px-6 lg:px-8">
+    <footer className="bg-card border-t border-border mt-4 pt-8 pb-6 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Brand */}
         <div className="mb-10">

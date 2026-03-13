@@ -3,6 +3,7 @@ import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "./AppSidebar";
 import { TopBar } from "./TopBar";
 import { CommandDialog } from "@/components/command/CommandDialog";
+import { SEOFooter } from "@/components/SEOFooter";
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -19,6 +20,7 @@ export function MainLayout({ children }: MainLayoutProps) {
           <TopBar onCommandOpen={() => setCommandOpen(true)} />
           <main className="flex-1 overflow-auto">
             {children}
+            <SEOFooter />
           </main>
         </SidebarInset>
       </div>

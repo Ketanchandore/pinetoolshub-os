@@ -48,6 +48,7 @@ import RepairPdfBlog from "./pages/blog/RepairPdfBlog";
 import PdfToBase64Blog from "./pages/blog/PdfToBase64Blog";
 import ResizeImageBlog from "./pages/blog/ResizeImageBlog";
 import NotFound from "./pages/NotFound";
+import RedirectPage from "./pages/RedirectPage";
 
 // Tool Landing Pages
 import MergePdfLanding from "./pages/tools/MergePdfLanding";
@@ -146,6 +147,17 @@ const App = () => (
             <Route path="/blog/repair-corrupted-pdf" element={<RepairPdfBlog />} />
             <Route path="/blog/convert-pdf-to-base64" element={<PdfToBase64Blog />} />
             <Route path="/blog/resize-image-online-free" element={<ResizeImageBlog />} />
+            {/* Redirect old 404 URLs from Google Search Console */}
+            <Route path="/pdf-to-image" element={<RedirectPage to="/pdf-to-jpg" />} />
+            <Route path="/embed" element={<RedirectPage to="/" />} />
+            <Route path="/wordpress-plugin" element={<RedirectPage to="/" />} />
+            <Route path="/blog-rewriter" element={<RedirectPage to="/content-studio" />} />
+            <Route path="/text-to-speech" element={<RedirectPage to="/" />} />
+            <Route path="/code-generator" element={<RedirectPage to="/" />} />
+            <Route path="/website-analyzer" element={<RedirectPage to="/" />} />
+            <Route path="/cover-letter" element={<RedirectPage to="/content-studio" />} />
+            <Route path="/pricing" element={<RedirectPage to="/" />} />
+
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

@@ -18,7 +18,7 @@ export function MainLayout({ children }: MainLayoutProps) {
         <AppSidebar />
         <SidebarInset className="flex flex-1 flex-col">
           <TopBar onCommandOpen={() => setCommandOpen(true)} />
-          <main className="flex-1 overflow-auto">
+          <main className="flex-1">
             {children}
             <SEOFooter />
           </main>
